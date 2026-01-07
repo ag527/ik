@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <title>认证结果提示</title>
+      <link type="text/css" href="css/base.css" rel="stylesheet"/>
+      <script type="text/javascript" src="js/main.js"></script>
+        <style type="text/css">
+           .error_div .result_icon{ padding-top: 3rem; text-align: center;}
+           .error_div .result_icon img{ width: 2.3rem; height: 2.3rem;}
+           .result_icon .china_btns{ color: #333333; font-size: 0.53rem; margin:0.5rem auto 0.2rem auto; }
+           .result_icon .en_btns{ color: #999999; font-size:0.4rem; }
+
+           .error_div  .result_icon .error_use{width:5.6rem;text-align: center;border: 0;border-radius: 1rem;color: #fff; margin-top: 17px; cursor: pointer;
+               height: 1.28rem;  display: block;  background: #ff4747; margin: 2.13rem auto 0 auto;}
+
+           .success_div .result_icon{ padding-top: 3rem; text-align: center; }
+           .success_div .result_icon img{ width: 2.3rem; height: 2.3rem;}
+           .result_icon .china_btns{ color: #333333; font-size: 0.53rem; margin:0.5rem auto 0.2rem auto; }
+           .result_icon .en_btns{ color: #999999; font-size:0.4rem; }
+           .success_div  .result_icon .success_use{width:5.6rem;text-align: center;border: 0;border-radius: 1rem;color: #fff; margin-top: 17px; cursor: pointer;
+               height: 1.28rem;  display: block;  background: #3dce3d; margin: 2.13rem auto 0 auto;}
+            
+        </style>
+
+   </head>
+
+<body>
+<div class="error_div" style="display: none">
+    <div class="result_icon">
+        <img src="image/error.png"/>
+        <div class="china_btns">认证失败</div>
+        <div class="en_btns">Authentication failed</div>
+        <div class="error_tip">非常抱歉：<span id="fail"></span></div>
+        <a class="error_use">
+            <div class="btn_china">重新认证</div>
+            <div class="btn_en">Renew to authentication</div>
+        </a>
+    </div>
+</div>
+
+<div class="success_div" style="display: none;">
+    <div class="result_icon">
+        <img src="image/sucess.png"/>
+        <div class="china_btns">认证成功</div>
+        <div class="en_btns">Authentication Ok</div>
+        <a class="success_use">
+            <div class="btn_china">开始使用网络</div>
+            <div class="btn_en">Start using the network</div>
+        </a>
+    </div>
+</div>
+
+</body>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript">
+      function getParameterByName(name) {
+          var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+          return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+      }
+      var type = getParameterByName("type");
+      var res = getParameterByName("res");
+      var refer = "https://www.baidu.com";
+      if(refer != 'https://m.baidu.com/?from=1021677r'){
+          if(refer.indexOf("?") >= 0){
+              refer = refer + "&mac=" + getParameterByName("mac");
+          }else{
+              refer = refer + "?mac=" + getParameterByName("mac");
+          }
+      }
+      var msg = getParameterByName("errmsg")
+      if(res == "success"){
+          $(".success_div").show();
+          //$(".error_div").hide();
+          //$(".success_use").attr("href",refer);
+          $(".btn_china").click(function(){
+              location.href = refer;
+          });
+          setTimeout(function(){
+              location.href = refer;
+          },500000);
+      }else{
+          //$(".success_div").hide();
+          var type = getParameterByName("type");
+          if(type == 2){
+              msg = msg.replace('上网码', "上网券号码")
+          }
+          $(".error_div").show();
+          var host = window.location.host;
+          $(".error_use").attr("href","http://"+host);
+          $("#fail").html(msg);
+      }
+  </script>
+</html>

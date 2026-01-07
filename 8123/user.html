@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <title>用户认证</title>
+      <link type="text/css" href="css/base.css" rel="stylesheet"/>
+      <script type="text/javascript" src="js/main.js"></script>
+      <style type="text/css">
+            .users{ padding: 0 0.53rem;}
+            .users .approve_title,.users .en_approve{ color: #5a6cff;}
+            .users .username em{background: url(image/user.png) no-repeat; background-size: cover; width: 0.466rem; height: 0.466rem; position: absolute; left: 0.73rem; top:0.35rem; display: inline-block;}
+            .users .content_user{ margin-top:0.32rem; }
+            .users .userpassword em{ background: url(image/pass_w.png) no-repeat; background-size: cover; width: 0.4rem; height: 0.53rem; position: absolute; left: 0.73rem; top:0.35rem; display: inline-block;}
+            .users .login { background-image: -webkit-linear-gradient(left,#5a6cff,#596eff,#4e82ff,#36aeff );  box-shadow: 0 5px 10px rgba(70,145,255,0.5); }}
+            @media (min-width: 768px) and (max-width: 1200px){
+                .users {
+                    padding: 0 60px;
+                }
+            }
+      </style>
+
+   </head>
+
+<body>
+<div class="users">
+    <div class="approve_title">用户认证</div>
+    <div class="en_approve">User authentication</div>
+    <div class="content_tip">用户名 <span>/ User name</span></div>
+    <div class="input_in username">
+        <em></em>
+        <input type="text" id="ikAccount" placeholder="输入用户名"/>
+    </div>
+    <div class="content_tip content_user">密码 <span>/ Password</span></div>
+    <div class="input_in userpassword">
+        <em></em>
+        <input type="password" id="ikPassword" placeholder="输入密码"/>
+    </div>
+    <button class="login" onclick="getValues()">
+        <div class="btn_china">认证</div>
+        <div class="btn_en">Certification</div>
+    </button>
+</div>
+</body>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/auth.js"></script>
+  <script type="text/javascript">
+      var host = window.location.host;
+      var user_ip = GetQueryString("user_ip") ;
+      var user_mac = GetQueryString("mac") ;
+      var refer = GetQueryString("refer") ;
+      function getValues(){
+          var UserName=document.getElementById("ikAccount").value;
+          var PassWord=document.getElementById("ikPassword").value;
+          if(!UserName){
+              alert("请输入用户名");
+              return false;
+          }
+          if(!PassWord){
+              alert("请输入密码");
+              return false;
+          }
+          var SumPassWord = CryptoJS.MD5(CryptoJS.MD5(PassWord).toString() + user_ip + user_mac).toString();
+          location.href = "/Action/webauth-up?type=1&action=release&username=" + UserName + "&password=" + SumPassWord + "&refer=" + refer+ "&mac="+getParameterByName("mac");
+      }
+  </script>
+</html>

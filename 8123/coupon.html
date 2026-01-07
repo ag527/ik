@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <title>上网码认证</title>
+      <link type="text/css" href="css/base.css" rel="stylesheet"/>
+      <script type="text/javascript" src="js/main.js"></script>
+      <style type="text/css">
+        .coupons{ padding: 0 0.53rem;}
+        .coupons .approve_title,.coupons .en_approve{ color: #7a5cfa;}
+        .coupons .input_in em{ background: url(image/coupon.png) no-repeat; background-size: cover; width: 0.44rem; height: 0.4rem; position: absolute; left: 0.73rem; top:0.4rem; display: inline-block;}
+        .coupons .login{ background-image: -webkit-linear-gradient(left,#7a5cfa,#7a5cfa,#a36bf1,#e081e4 );  box-shadow: 0 5px 10px rgba(122,92,250,0.4); }
+      </style>
+
+   </head>
+
+<body>
+<div class="coupons">
+    <div class="approve_title">上网码认证</div>
+    <div class="en_approve">Coupon authentication</div>
+    <div class="content_tip">上网码 <span>/ Access Code</span></div>
+    <div class="input_in">
+        <em></em>
+        <input type="text" placeholder="请输入上网券号码" id="ikCoupon"/>
+    </div>
+    <button class="login" id="btnCouponLogin">
+        <div class="btn_china">认证</div>
+        <div class="btn_en">Certification</div>
+    </button>
+</div>
+</body>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script type="text/javascript">
+      var host = window.location.host;
+      $(function(){
+          $("#btnCouponLogin").click(function(){
+              var coupon = $("#ikCoupon").val();
+              if(coupon){
+                  location.href = "/Action/webauth-up?type=2&action=release&username="+coupon+"&refer="+getParameterByName("refer")+ "&mac="+getParameterByName("mac");
+              }else{
+                  alert("请输入上网券号码");
+              }
+          });
+      });
+
+  </script>
+</html>

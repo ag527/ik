@@ -1,0 +1,64 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	color: #505459;
+	font-family: "Microsoft YaHei",sans-serif, Tahoma, Arial, Helvetica;
+	font-size: 14px;
+	text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, form, img, p, hr, samp, em {
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style-type: none;
+}
+
+a {
+	color: #0088cc;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus, input:focus, button:focus, select:focus, textarea:focus {
+	outline: none;
+}
+
+/*公共样式*/
+body{ background: #fff;}
+.approve_title{ text-align: center; margin: 1.13rem auto 0 auto; font-size: 0.64rem;}
+.en_approve{ text-align: center; margin: 0.2rem auto 0.93rem auto; font-size: 0.4rem;}
+.content_tip{ color: #333; font-size: 0.373rem; margin-left: 0.8rem; margin-bottom: 0.13rem;}
+.content_tip span{ color: #999999; font-size:0.32rem; }
+.input_in{ position: relative;border: 2px solid #dddddd; line-height:1.26rem; height: 1.26rem;border-radius: 1rem; width: 100%;}
+.input_in input{ width: 60%;  padding: 0 0.5rem 0 1.53rem; font-size: 0.37rem;  border: none;line-height:1.26rem; height:1.26rem; border-radius: 1rem;}
+.login{ width: 100%; text-align: center; border: 0; border-radius: 1rem; font-size: 0.453rem;  color: #fff; margin-top: 0.867rem; cursor: pointer;color: #fff; height: 1.28rem; display: block;}
+.login span{ display: block;}
+.btn_china{ font-size: 0.453rem;}
+.btn_en{ font-size:0.34rem; }
+@media (min-width: 1280px){/*认证框太小so改成1280*/
+	.approve_list>div{ width: 6.5rem}
+	.input_in{ width:50%;margin-left: auto; margin-right: auto;}
+	.content_tip{ width:50%; padding-left:0.8rem;margin-left: auto; margin-right: auto;}
+	.login{ width: 50%; margin-left: auto; margin-right: auto;}
+	.modal{ left: 38%;}
+	.chat_h,.chat_lay{width: 50%; margin: 0 auto!important}
+	.chat_jump .bar_progress{ width: 60%; margin-left: auto; margin-right: auto;}
+	.shop_show{ width: 50%; margin: 0 auto;}
+	.shop_info{ margin: 0 auto; width:50%;}
+	.shop_txts{ width: 13rem!important;}
+	.c-float-popWrap{ width: 40%;}
+	.result_icon{ padding-top: 10%!important;}
+	.jump_step{ margin-top: 9%;}
+	.chat_h{padding: 6% 0 3%!important;}
+	.chat_lay{padding: 3% 28px 3% 35px!important;}
+	.chat_goes{ margin: 4% auto 3%!important;}
+	.banner ul li{ margin-left: -1px;}
+	.packet_net{ width: 900px; margin: 0 auto;}
+}
